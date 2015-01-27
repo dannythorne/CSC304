@@ -1,0 +1,103 @@
+
+\documentclass{article}
+
+\setlength{\parindent}{0pc}
+\setlength{\parskip}{1pc}
+
+\begin{document}
+
+{\Large\bf Insertion Sort and Selection Sort}
+
+Sorting algorithms are of fundamental importance and make a natural place to start the study of algorithms.
+The most common type of sorting algorithm works by systematically comparing
+entries and repositioning them according to their relative size
+until they are all in order.
+They are called
+\textit{comparison sorts}.
+A couple of common elementary comparison sorts are
+\textit{selection sort}
+and
+\textit{insertion sort}.
+These two algorithms are described below and some preliminary analysis
+is given. The discussion assumes the algorithms are being applied to
+a list of $n$ items indexed starting from $0$,
+so the last entry in the list is indexed by $n-1$.
+References to the
+$i^{\mathrm{th}}$
+entry or
+$i^{\mathrm{th}}$
+step mean the entry or step indexed by $i$.
+
+{\bf Selection Sort ---}
+Traverse the entries from $0$ to $n-2$.
+At the
+$i^{\mathrm{th}}$
+entry,
+select from the remaining items the one that should go
+there and swap it into place.
+When sorting in ascending order, this means finding the
+minimum of the remaining entries.
+
+Here is a tiny example:
+
+\begin{tabular}{ccccl}
+\framebox{3} &           2  &           4  &           1  & \\
+          1  & \framebox{2} &           4  &           3  & \\
+          1  &           2  & \framebox{4} &           3  & \\
+          1  &           2  &           3  &           4  & \\
+\end{tabular}
+
+TODO: Picture of a general $i^{\mathrm{th}}$ step.
+
+At each of the $n-1$ steps, finding the minimum of the remaining
+$n-i-1$ items requires $n-i-1$ comparisons, so the total number
+of comparisons required to sort $n$ items with selection sort is
+\[
+  \sum_{i=0}^{n-2} n-i-1
+\;=\;
+  \sum_{i=1}^{n-1} i
+\;=\;
+  \frac{1}{2}n(n-1)
+\;=\;
+  \frac{1}{2}n^2-\frac{1}{2}n
+\]
+Each step requires at most one swap. A swap requires 3 assignments.
+So selection sort requires at most $3n$ assigments to sort $n$ items.
+
+{\bf Insertion Sort ---}
+Traverse the entries from $1$ to $n-1$.
+At the
+$i^{\mathrm{th}}$
+entry,
+insert the item from there into its correct spot to the left, shifting
+items to the right to make space for it.
+
+Here is a tiny example:
+
+\begin{tabular}{ccccl}
+          3  & \framebox{2} &           4  &           1  & \\
+          2  &           3  & \framebox{4} &           1  & \\
+          2  &           3  &           4  & \framebox{1} & \\
+          1  &           2  &           3  &           4  & \\
+\end{tabular}
+
+At each of the $n-1$ steps, an average of
+$\frac{1}{2}i$
+comparisons and
+$\frac{1}{2}i$
+assignments are performed,
+so the total number of each required for insertion sort
+on average is
+\[
+  \frac{1}{2}\sum_{i=1}^{n-1} i
+\;=\;
+  \frac{1}{2}\left( \frac{1}{2}n(n-1)\right)
+\;=\;
+  \frac{1}{4}n(n-1)
+\;=\;
+  \frac{1}{4}n^2-\frac{1}{4}n
+\]
+What is the best case and worse case for insertion sort?
+
+
+\end{document}

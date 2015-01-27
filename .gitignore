@@ -1,0 +1,8 @@
+
+*~
+.*.sw*
+a.out
+*.exe
+*.log
+*.aux
+
