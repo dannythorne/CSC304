@@ -1,0 +1,203 @@
+
+\documentclass{article}
+
+\begin{document}
+
+{\Large\bf Asymptotic Analysis Examples}
+
+\vspace{1pc}
+Determine the asymptotic relationship between $f$ and $g$.
+
+\begin{itemize}
+\item
+$f(n) = \frac{1}{2}n^2 - 3n$
+
+$g(n) = n^2$
+
+We want to find a $c>0$ and $n_0>0$ such that
+\[
+  \frac{1}{2}n^2 - 3n \le cn^2
+\]
+for all $n\ge n_0$.
+Dividing through by $n^2$, we see
+\[
+  \frac{1}{2} - \frac{3}{n} \le c
+\]
+so we can choose $n_0=1$ and then
+\[
+  \Big(
+  0 <
+  \Big)
+  \quad
+  c = 1
+  \quad
+  \left(
+  \ge
+  \frac{1}{2} - \frac{3}{n_0}
+  = -\frac{5}{2}
+  \right)
+\]
+to satisify the definition of
+\[
+  f(n) = O\big(g(n)\big).
+\]
+
+Then we try to find a
+$c>0$ and $n_0>0$ such that
+\[
+  n^2 \le c\left(\frac{1}{2}n^2 - 3n\right)
+\]
+for all $n\ge n_0$.
+Dividing through by $n^2$, we see
+\[
+  1 \le c\left(\frac{1}{2} - \frac{3}{n}\right).
+\]
+If we choose something like $n_0=12$, then
+\[
+  1 \le c\left(\frac{1}{2} - \frac{3}{n_0}\right)
+\Longrightarrow
+  1 \le \frac{1}{4}c
+\Longrightarrow
+  c \ge 4
+\]
+so choosing $c=4$ satisfies the definition of
+\[
+  g(n) = O\big(f(n)\big).
+\]
+
+We've shown both
+$f=O(g)$
+and
+$g=O(f)$
+so that means
+$f=\Theta(g)$.
+
+\vspace{1pc}
+\item
+$f(n) = n^3 - 5n$
+
+$g(n) = 2n^2 + 25n$
+
+We'll start by trying to satisfy the definition of $f=O(g)$
+by trying to find a $c>0$ and $n_0>0$ such that
+\[
+  n^3 - 5n \le c\left(2n^2 + 25n\right)
+\]
+for all $n\ge n_0$. Dividing through by $n^3$, we have
+\[
+  1 - \frac{5}{n^2} \le c\left(\frac{2}{n} + \frac{25}{n^2}\right).
+\]
+By casual inspection we know that no matter what value is chosen
+for $c$ it is always possible to make $n$ big enough to violate
+the inequality, but let's be more formal.
+For $n\ge3$,
+\[
+  1 - \frac{5}{n^2} > \frac{1}{2},
+\]
+so to show that the definition cannot be satisfied it is sufficient
+to consider
+\[
+  \frac{1}{2} \le c\left(\frac{2}{n} + \frac{25}{n^2}\right).
+\]
+Multiplying through by $n^2$ now gives
+\[
+  \frac{1}{2}n^2 \le c\left(2n + 25\right)
+\quad
+\Longrightarrow
+\quad
+  \frac{n^2}{4n+50} \le c.
+\]
+We can use this to show, given any $c$, how to choose $n$ large enough to violate the original inequality.
+Since, for $n>12$
+\[
+  \frac{n^2}{4n+50}
+  >
+  \frac{n^2}{8n}
+  =
+  \frac{1}{8}n,
+\]
+choosing $n\ge8c$ means
+\[
+  \frac{n^2}{4n+50} > c
+\]
+and, in turn,
+\[
+  1 - \frac{5}{n^2} > \frac{1}{2} > c\left(\frac{2}{n} + \frac{25}{n^2}\right).
+\]
+and, finally,
+\[
+  n^3 - 5n > c\left(2n^2 + 25n\right).
+\]
+So, $f\ne O(g)$.
+That means $f=\omega(g)$.
+
+\vspace{1pc}
+\item $f(n) = 6n^3$, $g(n) = n^2$
+
+\[
+  6n^3 \le cn^2
+\Longrightarrow
+  6n \le c
+\Longrightarrow
+  \not\exists c, n_0 \mbox{ s.t. } 6n^3 \le cn^2 \mbox{ for } n>n_0
+\]
+so $f(n)\ne O(g(n))$.
+
+\[
+  6n^3 \ge cn^2
+\Longrightarrow
+  6n > c
+\Longrightarrow
+  n > \frac{c}{6}
+\]
+so for any $c$, choosing $n > \frac{c}{6}$ makes $f(n) > g(n)$.
+That means $f=\omega(g)$ or $g = o(f)$.
+
+\vspace{1pc}
+\item $f(n) = n^{1/2}$, $g(n) = n^{2/3}$
+
+\[
+  \lim_{n\rightarrow\infty}\frac{n^{1/2}}{n^{2/3}}
+=
+  \lim n^{1/2-2/3}
+=
+  \lim n^{-1/6}
+=
+  0
+\]
+so $f(n)=o(g(n))$.
+
+Note that, correspondingly,
+\[
+  \lim_{n\rightarrow\infty}\frac{n^{2/3}}{n^{1/2}}
+\Longrightarrow
+  \lim n^{1/6} = \infty.
+\]
+
+\vspace{1pc}
+\item $f(n) = 100n + \log(n)$, $g(n) = n + (\log(n))^2$
+
+\[
+  \lim_{n\rightarrow\infty} \frac{100n + \log(n)}{n + (\log(n))^2}
+=
+  \lim_{n\rightarrow\infty} \frac{100 + \frac{1}{n}}{1 + 2(\log(n))\frac{1}{n}}
+=
+  \lim_{n\rightarrow\infty} \frac{100n + 1}{n + 2\log(n)}
+=
+  \lim_{n\rightarrow\infty} \frac{100}{1 + \frac{2}{n}} = 100
+\]
+so $f(n) = O(g(n))$.
+
+\[
+  \lim_{n\rightarrow\infty} \frac{n + (\log(n))^2}{100n + \log(n)}
+=
+  \frac{1}{100}
+\]
+so $f(n) = \Omega(g(n))$.
+
+Together, that means $f(n) = \Theta(g(n))$.
+
+
+\end{itemize}
+
+\end{document}
