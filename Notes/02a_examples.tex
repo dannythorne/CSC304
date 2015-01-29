@@ -10,6 +10,7 @@ Determine the asymptotic relationship between $f$ and $g$.
 
 \begin{itemize}
 \item
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 $f(n) = \frac{1}{2}n^2 - 3n$
 
 $g(n) = n^2$
@@ -74,65 +75,97 @@ $f=\Theta(g)$.
 
 \vspace{1pc}
 \item
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 $f(n) = n^3 - 5n$
 
 $g(n) = 2n^2 + 25n$
 
-We'll start by trying to satisfy the definition of $f=O(g)$
-by trying to find a $c>0$ and $n_0>0$ such that
+We suspect $f\ne O(g)$, so we need to show, for any given $c>0$, how to find $n$ large enough to violate the inequality
 \[
-  n^3 - 5n \le c\left(2n^2 + 25n\right)
+   n^3 - 5n \le c\left(2n^2 + 25n\right).
 \]
-for all $n\ge n_0$. Dividing through by $n^3$, we have
+To that end, consider
+\begin{eqnarray}
+\label{Eqn:IneqC}
+   \frac{n^3 - 5n}{2n^2 + 25n} \le c.
+\end{eqnarray}
+Note that
 \[
-  1 - \frac{5}{n^2} \le c\left(\frac{2}{n} + \frac{25}{n^2}\right).
+   \frac{n^3 - 5n}{2n^2 + 25n} \le \frac{n^3}{2n^2} = \frac{1}{2}n
 \]
-By casual inspection we know that no matter what value is chosen
-for $c$ it is always possible to make $n$ big enough to violate
-the inequality, but let's be more formal.
-For $n\ge3$,
+for $n\ge1$.
+So, for any $c$, choosing $n$ so that
 \[
-  1 - \frac{5}{n^2} > \frac{1}{2},
+  \frac{1}{2}n > c \quad (\mbox{i.e., }n>2c)
 \]
-so to show that the definition cannot be satisfied it is sufficient
-to consider
+means
 \[
-  \frac{1}{2} \le c\left(\frac{2}{n} + \frac{25}{n^2}\right).
+  \frac{n^3 - 5n}{2n^2 + 25n} > \frac{1}{2}n > c
 \]
-Multiplying through by $n^2$ now gives
-\[
-  \frac{1}{2}n^2 \le c\left(2n + 25\right)
-\quad
-\Longrightarrow
-\quad
-  \frac{n^2}{4n+50} \le c.
-\]
-We can use this to show, given any $c$, how to choose $n$ large enough to violate the original inequality.
-Since, for $n>12$
-\[
-  \frac{n^2}{4n+50}
-  >
-  \frac{n^2}{8n}
-  =
-  \frac{1}{8}n,
-\]
-choosing $n\ge8c$ means
-\[
-  \frac{n^2}{4n+50} > c
-\]
-and, in turn,
-\[
-  1 - \frac{5}{n^2} > \frac{1}{2} > c\left(\frac{2}{n} + \frac{25}{n^2}\right).
-\]
-and, finally,
-\[
-  n^3 - 5n > c\left(2n^2 + 25n\right).
-\]
-So, $f\ne O(g)$.
-That means $f=\omega(g)$.
+which violates inequality (\ref{Eqn:IneqC}) and, in turn,
+the original inequality.
+Having shown that, no matter how large we choose $c$, it is always
+possible for $n$ to get large enough to violate the definition
+of $f=O(g)$, we conclude that in fact $f\ne O(g)$.
+Hence, the asymptotic relationship between $f$ and $g$ is
+$f=\omega(g)$.
+
+% We'll start by trying to satisfy the definition of $f=O(g)$
+% by trying to find a $c>0$ and $n_0>0$ such that
+% \[
+%   n^3 - 5n \le c\left(2n^2 + 25n\right)
+% \]
+% for all $n\ge n_0$. Dividing through by $n^3$, we have
+% \[
+%   1 - \frac{5}{n^2} \le c\left(\frac{2}{n} + \frac{25}{n^2}\right).
+% \]
+% By casual inspection we know that no matter what value is chosen
+% for $c$ it is always possible to make $n$ big enough to violate
+% the inequality, but let's be more formal.
+% For $n\ge3$,
+% \[
+%   1 - \frac{5}{n^2} > \frac{1}{2},
+% \]
+% so to show that the definition cannot be satisfied it is sufficient
+% to consider
+% \[
+%   \frac{1}{2} \le c\left(\frac{2}{n} + \frac{25}{n^2}\right).
+% \]
+% Multiplying through by $n^2$ now gives
+% \[
+%   \frac{1}{2}n^2 \le c\left(2n + 25\right)
+% \quad
+% \Longrightarrow
+% \quad
+%   \frac{n^2}{4n+50} \le c.
+% \]
+% We can use this to show, given any $c$, how to choose $n$ large enough to violate the original inequality.
+% Since, for $n>12$
+% \[
+%   \frac{n^2}{4n+50}
+%   >
+%   \frac{n^2}{8n}
+%   =
+%   \frac{1}{8}n,
+% \]
+% choosing $n\ge8c$ means
+% \[
+%   \frac{n^2}{4n+50} > c
+% \]
+% and, in turn,
+% \[
+%   1 - \frac{5}{n^2} > \frac{1}{2} > c\left(\frac{2}{n} + \frac{25}{n^2}\right).
+% \]
+% and, finally,
+% \[
+%   n^3 - 5n > c\left(2n^2 + 25n\right).
+% \]
+% So, $f\ne O(g)$.
+% That means $f=\omega(g)$.
 
 \vspace{1pc}
 \item $f(n) = 6n^3$, $g(n) = n^2$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \[
   6n^3 \le cn^2
@@ -155,6 +188,7 @@ That means $f=\omega(g)$ or $g = o(f)$.
 
 \vspace{1pc}
 \item $f(n) = n^{1/2}$, $g(n) = n^{2/3}$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \[
   \lim_{n\rightarrow\infty}\frac{n^{1/2}}{n^{2/3}}
@@ -176,6 +210,7 @@ Note that, correspondingly,
 
 \vspace{1pc}
 \item $f(n) = 100n + \log(n)$, $g(n) = n + (\log(n))^2$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \[
   \lim_{n\rightarrow\infty} \frac{100n + \log(n)}{n + (\log(n))^2}
