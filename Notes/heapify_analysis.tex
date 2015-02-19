@@ -32,7 +32,7 @@ by shifting it upward into the heap as needed to acheive the heap property.
 
 \vspace{1pc}
 The $k^{th}$ node added to the heap may need to be shifted up as many as
-$\log_2(k)$ times, so
+$\log_2(k)$ times, so an upper bound on number of shifts is
 \[
   \sum_{k=1}^{n} \log_2(k)
 =
@@ -77,10 +77,11 @@ height  & num trees \\
 \end{tabular}
 \end{center}
 
-For each of the $2^{h-k}$ trees of height $k$, up to $k$ swaps will be required to
-heapify it (since both of its subtrees are already heaps), so that's a total of
-$k2^{h-k}$ swaps for the trees of height $k$. Summing all those products for $1\le
-k\le h$ gives
+For each of the $2^{h-k}$ trees of height $k$, up to $k$ swaps will be required
+to heapify it (since both of its subtrees are already heaps), so that's an
+upper bound of $k2^{h-k}$ swaps for the trees of height $k$. Summing all those
+products for
+$1\le k\le h$ gives
 \[
   \sum_{k=1}^{h} k2^{h-k}
 =
