@@ -19,8 +19,8 @@ For the following analysis,
 assume a full tree of height $h$,
 so $n=2^{h+1}-1$ and $h=\log_2(n+1) - 1$
 where $n$ is the number of nodes in the tree.
-(The general case of heapifying a complete tree is squeezed between that of two
-full trees, both of which have the same run-time complexity.)
+(The general case of heapifying a complete tree has a time complexity that is
+squeezed between those of two full trees.)
 
 \vspace{1pc}
 {\large\bf Top-Down Heapify}
@@ -156,5 +156,19 @@ Either I'm missing something or his $k-1$ is a typo.
 It's not important in terms of the asymptotic analysis, though.
 The run-time complexity of bottom-up heapify is shown to be \textbf{linear}
 either way.
+
+\vspace{1pc}
+{\large\bf Exercise}
+
+Using our understanding of $\log_2(n!)$ in the top-down analysis is unecessary.
+An analysis that is similar to what we did in the bottom-down case applies in
+the top-down case as well and leads to
+this
+\[
+  \sum_{k=1}^{h} k2^k
+\]
+expression for the upper bound which appears deceptively similar to the one we
+found in the bottom-down case. Using the same technique as in the bottom down
+case, show that this sum is proportional to $n\log(n)$.
 
 \end{document}
