@@ -59,6 +59,7 @@ void radix_exchange( int* a, int n, int bit)
       }
     }
 
+    // TODO: Handle i and j boundary cases.
     radix_exchange( a, i, bit-1);
     radix_exchange( a + i, n-i, bit-1);
   }
