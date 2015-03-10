@@ -4,11 +4,12 @@
 #include <cmath>
 using namespace std;
 
-void radix_exchange( int* a, int n, int bit);
+void radix_exchange( int* a, int n, int bit, int minbit);
 
 void init( int* a, int n);
 void display( int* a, int n);
 void shuffle( int* a, int n);
+bool is_sorted( int* a, int n);
 
 int main()
 {
@@ -24,21 +25,21 @@ int main()
   shuffle( a, n);
 
   display( a, n);
+  cout << ((is_sorted(a,n))?("Is sorted."):("Is not sorted.")) << endl;
 
-  radix_exchange( a, n, 3);
+  radix_exchange( a, n, /*msb*/31, /*minbit*/0);
 
   display( a, n);
+  cout << ((is_sorted(a,n))?("Is sorted."):("Is not sorted.")) << endl;
 
   delete [] a;
-
-  cout << "Good Bye!" << endl;
 
   return 0;
 }
 
-void radix_exchange( int* a, int n, int bit)
+void radix_exchange( int* a, int n, int bit, int minbit)
 {
-  if( n>1)
+  if( n>1 && bit>=minbit)
   {
     int i, j;
     int temp;
@@ -59,9 +60,10 @@ void radix_exchange( int* a, int n, int bit)
       }
     }
 
-    // TODO: Handle i and j boundary cases.
-    radix_exchange( a, i, bit-1);
-    radix_exchange( a + i, n-i, bit-1);
+    if( !((a[i]>>bit)&(1))) { i++;}
+
+    radix_exchange( a, i, bit-1, minbit);
+    radix_exchange( a + i, n-i, bit-1, minbit);
   }
 }
 
@@ -70,20 +72,20 @@ void init( int* a, int n)
   int i;
   for( i=0; i<n; i++)
   {
-    a[i] = i;
+    a[i] = rand();
   }
 }
 
 void display( int* a, int n)
 {
-  if( n < 32)
+  if( n <= 256)
   {
     int i;
     for( i=0; i<n; i++)
     {
-      cout << " " << a[i];
+      cout << i << " " << a[i] << endl;
     }
-    cout << endl;
+    //cout << endl;
   }
 }
 
@@ -99,4 +101,16 @@ void shuffle( int* a, int n)
   }
 }
 
+bool is_sorted( int* a, int n)
+{
+  int i;
+  for( i=1; i<n; i++)
+  {
+    if( a[i] < a[i-1])
+    {
+      return false;
+    }
+  }
+  return true;
+}
 
